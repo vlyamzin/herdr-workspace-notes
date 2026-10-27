@@ -1,0 +1,23 @@
+{
+  "name": "herdr-workspace-notes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Herdr plugin: one sticky note per workspace, with a sidebar indicator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlyamzin/herdr-workspace-notes.git"
+  },
+  "homepage": "https://github.com/vlyamzin/herdr-workspace-notes#readme",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p .",
+    "version": "node scripts/sync-version.mjs && git add herdr-plugin.toml CHANGELOG.md"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,41 @@
+id = "vlyamzin.workspace-notes"
+name = "Workspace Notes"
+version = "0.1.0"
+description = "One sticky note per workspace, with a sidebar indicator"
+min_herdr_version = "0.9.0"
+platforms = ["linux", "macos"]
+
+[[build]]
+command = ["npm", "ci"]
+
+[[build]]
+command = ["npm", "run", "build"]
+
+[[actions]]
+id = "open"
+title = "Open workspace note"
+contexts = ["workspace"]
+command = ["sh", "-c", "exec \"${HERDR_BIN_PATH:-herdr}\" plugin pane open --plugin \"$HERDR_PLUGIN_ID\" --entrypoint note"]
+
+[[panes]]
+id = "note"
+title = "Workspace note"
+placement = "popup"
+width = "70%"
+height = "60%"
+command = ["node", "dist/note.js"]
+
+[[startup]]
+command = ["node", "dist/sync.js"]
+
+[[events]]
+on = "workspace.created"
+command = ["node", "dist/sync.js"]
+
+[[events]]
+on = "workspace.renamed"
+command = ["node", "dist/sync.js"]
+
+[[events]]
+on = "workspace.closed"
+command = ["node", "dist/sync.js"]
